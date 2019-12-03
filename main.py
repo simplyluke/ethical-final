@@ -10,6 +10,7 @@ def initial_setup(adapter):
     os.system("airmon-ng check kill")
     os.system("/etc/init.d/avahi-daemon stop")
     os.system("ifconfig %s down" %adapter)
+    os.system("iwconfig %s txpower 30" %adapter)
     os.system("airmon-ng start %s" %adapter)
     cmd = "ifconfig | grep mon | awk -F: '{print $1}'"
     int_name = str(os.popen(cmd).read()).strip('\n')
